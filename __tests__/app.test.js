@@ -9,7 +9,7 @@ describe('horoscope routes', () => {
     return setup(pool);
   });
 
-  it.only('creates a horoscope via POST', async () => {
+  it('creates a horoscope via POST', async () => {
     const res = await request(app)
       .post('/api/v1/horoscopes')
       .send({ sign: 'aquarius' });
@@ -35,7 +35,7 @@ describe('horoscope routes', () => {
       'luckyNumber': '13',
       'luckyTime': '10am'
     });
-
+   
     const sagittarius = await Horoscope.insert({
       'currentDate': 'June 22, 2021',
       'horoscope': 'Your closest connections are more important than ever today, so make sure that you\'re in touch with your partners -- business, romantic and other. It\'s a good time to clear the ground between you.',
@@ -55,8 +55,9 @@ describe('horoscope routes', () => {
       'luckyNumber': '56',
       'luckyTime': '4pm'
     });
-
+    
     const res = await request(app).get('/api/v1/horoscopes');
-    expect(res.body).toEqual({ aquarius, sagittarius, aries });
+    
+    expect(res.body).toEqual([aquarius, sagittarius, aries]);
   });
 });
