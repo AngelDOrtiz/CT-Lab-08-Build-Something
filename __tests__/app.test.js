@@ -9,19 +9,19 @@ describe('horoscope routes', () => {
     return setup(pool);
   });
 
-  it('creates a horoscope via POST', async () => {
+  it.only('creates a horoscope via POST', async () => {
     const res = await request(app)
       .post('/api/v1/horoscopes')
       .send({ sign: 'aquarius' });
     
     expect(res.body).toEqual({
-      'currentDate': 'June 22, 2021',
-      'horoscope': 'It\'s a good day to do nothing -- you\'re waiting for a new burst of inspiration, and it\'s coming tomorrow or thereabouts. If you can blow off your appointments, that would be perfect.',
-      'compatibility': 'Gemini',
-      'mood': 'Cool',
-      'color': 'Spring Green',
-      'luckyNumber': '13',
-      'luckyTime': '10am'
+      'currentDate': expect.any(String),
+      'horoscope':expect.any(String),
+      'compatibility': expect.any(String),
+      'mood': expect.any(String),
+      'color': expect.any(String),
+      'luckyNumber': expect.any(String),
+      'luckyTime': expect.any(String)
     });
   });
 
